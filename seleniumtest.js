@@ -2,9 +2,10 @@
  * Created by tdt on 20.09.2016.
  */
 var webdriver = require('selenium-webdriver');
+var assert = require('assert');
 
 var driver = new webdriver.Builder()
-    .forBrowser('chrome')
+    .forBrowser('firefox')
     .build();
 
 var name = "test";
@@ -17,6 +18,8 @@ driver.findElement(webdriver.By.id('email')).sendKeys(email);
 driver.findElement(webdriver.By.id('description')).sendKeys(description);
 driver.findElement(webdriver.By.xpath('/html/body/form/fieldset/input[3]')).click();
 driver.wait(function() {
+//    console.log(driver.isElementPresent(webdriver.By.xpath('/html/body/pre')));
     return driver.isElementPresent(webdriver.By.xpath('/html/body/pre'));
 }, 3000);
+
 driver.quit();
